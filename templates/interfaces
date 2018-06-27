@@ -1,0 +1,25 @@
+# interfaces(5) file used by ifup(8) and ifdown(8)
+
+# Please note that this file is written to be used with dhcpcd
+# For static IP, consult /etc/dhcpcd.conf and 'man dhcpcd.conf'
+
+# Include files from /etc/network/interfaces.d:
+
+#This config is intended for use with braidstag
+source-directory /etc/network/interfaces.d
+
+auto eth0
+iface eth0 inet manual
+
+auto wlan0
+iface wlan0 inet manual
+	wireless-channel 1
+	wireless-essid meshtag
+	wireless-mode ad-hoc
+	wireless-ap any
+
+
+auto bat0
+iface bat0 inet manual
+	pre-up /usr/sbin/batctl if add wlan0
+	post-up /home/pi/bridge

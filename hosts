@@ -1,0 +1,32 @@
+[guns]
+gun1 staticip=192.168.0.231
+gun2 staticip=192.168.0.232
+gun3 staticip=192.168.0.233
+gun4 staticip=192.168.0.234
+#gun5 staticip=192.168.0.235
+#gun6 staticip=192.168.0.236
+#gun7 staticip=192.168.0.237
+#gun8 staticip=192.168.0.238
+
+[gateways]
+meshcontrol staticip=192.168.0.230
+
+[ansible-controllers]
+
+
+[pi:children]
+guns
+gateways
+
+[pi:vars]
+ansible_connection=ssh
+ansible_ssh_user=pi
+ansible_ssh_pass=raspberry
+
+[guns:vars]
+staticgateway=192.168.0.230
+ansible_host="{{ inventory_hostname }}.local"
+
+[gateways:vars]
+staticgateway=192.168.0.252
+ansible_host="{{ inventory_hostname }}.local"

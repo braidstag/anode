@@ -1,0 +1,42 @@
+- hosts: all
+  gather_facts: False
+  vars_prompt:
+    - name: "myhostname"
+      prompt: "Enter new hostname"
+      private: no
+
+  tasks:
+    - name: Set hostname to match inventory hostname in /etc/hostname
+      lineinfile: dest=/etc/hostname
+                regexp='^'
+                line='{{ myhostname }}'
+                state=present
+      notify: reboot sequence
+
+    - name: Set hostname to match inventory hostname in /hosts
+      lineinfile:
+                  path: /etc/hosts
+                  regexp: '^127.0.1.1'
+                  line: '127.0.1.1  {{ inventory_hostname }}'
+      become: true
+
+  handlers:
+    - name: reboot sequence
+      changed_when: "true"
+      debug: msg='trigger machine reboot sequence'
+      notify:
+        - get current time
+        - reboot system
+        - waiting for server to come back
+    - name: get current time
+      command: /bin/date +%s
+      register: before_reboot
+      sudo: false
+    - name: reboot system
+      shell: sleep 2 && shutdown -r now "Ansible package updates triggered"
+      async: 1
+      poll: 0
+      ignore_errors: true
+    - name: waiting for server to come back
+      wait_for_connection:
+        delay: 30
