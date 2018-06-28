@@ -1,6 +1,6 @@
 ---
 - hosts: gateways
-  become: true
+
 
   tasks:
 #  - name: Ensure screen is installed
@@ -8,23 +8,29 @@
 
   - name: Ensure batctl is installed
     apt: name=batctl state=present
+    become: true
 
   - name: DHCPCD files
     template: src=templates/dhcpcdstatic.conf dest=/etc/dhcpcd.conf
     notify: reboot sequence
+    become: true
   - name: Interfaces files
     template: src=templates/interfaces  dest=/etc/network/interfaces
     notify: reboot sequence
+    become: true
   - name: WPA_Supplicant file
     template: src=templates/wpa_supplicant.tmplt  dest=/etc/wpa_supplicant/wpa_supplicant.conf
     notify: reboot sequence
+    become: true
   - name: Bridge file
     template: src=templates/bridgestatic2      dest=/home/pi/bridge  mode=+x
     notify: reboot sequence
+    become: true
 
 
   - name: Copy debug file from template
     template: src=templates/debug        dest=/home/pi/debug
+    become: true
 
   handlers:
     - name: reboot sequence
@@ -48,7 +54,7 @@
         delay: 30
 
 - hosts: guns
-  become: true
+
 
   tasks:
 #  - name: Ensure screen is installed
@@ -68,19 +74,24 @@
   - name: DHCPCD files
     template: src=templates/dhcpcdstatic.conf dest=/etc/dhcpcd.conf
     notify: reboot sequence
+    become: true
   - name: Interfaces files
     template: src=templates/interfaces  dest=/etc/network/interfaces
     notify: reboot sequence
+    become: true
   - name: WPA_Supplicant file
     template: src=templates/wpa_supplicant.tmplt  dest=/etc/wpa_supplicant/wpa_supplicant.conf
     notify: reboot sequence
+    become: true
   - name: Bridge file
     template: src=templates/bridgestatic2      dest=/home/pi/bridge  mode=+x
     notify: reboot sequence
+    become: true
 
 
   - name: Copy debug file from template
     template: src=templates/debug        dest=/home/pi/debug
+    become: true
 
 #  - include: gamesetup.yml
 

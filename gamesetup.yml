@@ -1,12 +1,12 @@
 ---
   - hosts: guns
-    become: true
 
     tasks:
       - name: Apt-update
         apt:
         update_cache: yes
         cache_valid_time: 3600
+        become: true
 
       - name: Verify dependancies for game
         apt: name={{item}} state=present
@@ -15,7 +15,9 @@
           - python-serial
           - python-pyside.qtgui
           - python-pyside.qtxml
-
+          - git
+        become: true
+        
       - name: Get game software
         git:
           repo: 'https://github.com/braidstag/arduino-milestag.git'
