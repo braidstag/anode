@@ -1,0 +1,15 @@
+---
+  - hosts: guns
+    become: true
+
+    tasks:
+
+    - name: Verify dependancies for game
+      apt: name={{item}} state=present
+      with_items:
+       - python
+       - python-serial
+       - python-pyside.qtgui
+       - python-pyside.qtxml
+      update_cache: yes
+      cache_valid_time: 3600
