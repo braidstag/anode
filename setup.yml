@@ -82,6 +82,8 @@
   - name: Copy debug file from template
     template: src=templates/debug        dest=/home/pi/debug
 
+#  - include: gamesetup.yml
+
   handlers:
     - name: reboot sequence
       changed_when: "true"
