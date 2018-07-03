@@ -49,6 +49,7 @@
       async: 1
       poll: 0
       ignore_errors: true
+      become: true
     - name: waiting for server to come back
       wait_for_connection:
         delay: 30
@@ -62,6 +63,7 @@
 
   - name: Ensure batctl is installed
     apt: name=batctl state=present
+    become: true
 
   - name: Set hostname to match inventory hostname in /hosts
     lineinfile:
@@ -112,6 +114,7 @@
       async: 1
       poll: 0
       ignore_errors: true
+      become: true
     - name: waiting for server to come back
       wait_for_connection:
         delay: 30

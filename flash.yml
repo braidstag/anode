@@ -1,0 +1,12 @@
+---
+  - hosts: guns
+#needs instructions for configuring avrdude
+    tasks:
+      - name: Verify dependancies
+        apt: name=avrdude state=latest
+        update_cache: yes
+        cache_valid_time: 3600
+        become: true
+      - name: Flash
+        shell: /home/pi/flash.sh
+        become: true

@@ -17,8 +17,9 @@
           - python-pyside.qtxml
           - git
         become: true
-        
+
       - name: Get game software
         git:
           repo: 'https://github.com/braidstag/arduino-milestag.git'
           dest: ~/game/
+          version: 56c9ea2
