@@ -11,19 +11,19 @@
     become: true
 
   - name: DHCPCD files
-    template: src=templates/dhcpcdstatic.conf dest=/etc/dhcpcd.conf
+    template: src=templates/network/dhcpcdstatic.conf dest=/etc/dhcpcd.conf
     notify: reboot sequence
     become: true
   - name: Interfaces files
-    template: src=templates/interfaces  dest=/etc/network/interfaces
+    template: src=templates/network/interfaces  dest=/etc/network/interfaces
     notify: reboot sequence
     become: true
   - name: WPA_Supplicant file
-    template: src=templates/wpa_supplicant.tmplt  dest=/etc/wpa_supplicant/wpa_supplicant.conf
+    template: src=templates/network/wpa_supplicant.tmplt  dest=/etc/wpa_supplicant/wpa_supplicant.conf
     notify: reboot sequence
     become: true
   - name: Bridge file
-    template: src=templates/bridgestatic2      dest=/home/pi/bridge  mode=+x
+    template: src=templates/network/bridgestatic2      dest=/home/pi/bridge  mode=+x
     notify: reboot sequence
     become: true
 
@@ -74,19 +74,19 @@
     notify: reboot sequence
 
   - name: DHCPCD files
-    template: src=templates/dhcpcdstatic.conf dest=/etc/dhcpcd.conf
+    template: src=templates/network/dhcpcdstatic.conf dest=/etc/dhcpcd.conf
     notify: reboot sequence
     become: true
   - name: Interfaces files
-    template: src=templates/interfaces  dest=/etc/network/interfaces
+    template: src=templates/network/interfaces  dest=/etc/network/interfaces
     notify: reboot sequence
     become: true
   - name: WPA_Supplicant file
-    template: src=templates/wpa_supplicant.tmplt  dest=/etc/wpa_supplicant/wpa_supplicant.conf
+    template: src=templates/network/wpa_supplicant.tmplt  dest=/etc/wpa_supplicant/wpa_supplicant.conf
     notify: reboot sequence
     become: true
   - name: Bridge file
-    template: src=templates/bridgestatic2      dest=/home/pi/bridge  mode=+x
+    template: src=templates/network/bridgestatic2      dest=/home/pi/bridge  mode=+x
     notify: reboot sequence
     become: true
 
