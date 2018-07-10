@@ -1,12 +1,12 @@
 [guns]
-gun1 staticip=192.168.0.231
-gun2 staticip=192.168.0.232
-gun3 staticip=192.168.0.233
-gun4 staticip=192.168.0.234
-#gun5 staticip=192.168.0.235
-#gun6 staticip=192.168.0.236
-#gun7 staticip=192.168.0.237
-#gun8 staticip=192.168.0.238
+gun1 staticip=192.168.0.231 btmac=5A:5A:5A:A6:10:18
+gun2 staticip=192.168.0.232 btmac=5A:5A:5A:A8:8B:38
+gun3 staticip=192.168.0.233 btmac=XX:XX:XX:XX:XX:XX
+gun4 staticip=192.168.0.234 btmac=XX:XX:XX:XX:XX:XX
+#gun5 staticip=192.168.0.235 btmac=XX:XX:XX:XX:XX:XX
+#gun6 staticip=192.168.0.236 btmac=XX:XX:XX:XX:XX:XX
+#gun7 staticip=192.168.0.237 btmac=XX:XX:XX:XX:XX:XX
+#gun8 staticip=192.168.0.238 btmac=XX:XX:XX:XX:XX:XX
 
 [gateways]
 meshcontrol staticip=192.168.0.230
