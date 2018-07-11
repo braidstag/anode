@@ -29,7 +29,7 @@
 
 
   - name: Copy debug file from template
-    template: src=templates/debug        dest=/home/pi/debug
+    template: src=templates/debug        dest=/home/pi/braidstag/debug
     become: true
 
   handlers:
@@ -92,7 +92,7 @@
 
 
   - name: Copy debug file from template
-    template: src=templates/debug        dest=/home/pi/debug
+    template: src=templates/debug        dest=/home/pi/braidstag/debug
     become: true
 
 #  - include: gamesetup.yml

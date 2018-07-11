@@ -8,5 +8,5 @@
         cache_valid_time: 3600
         become: true
       - name: Flash
-        shell: /home/pi/flash.sh
+        shell: /home/pi/braidstag/config/flash.sh
         become: true

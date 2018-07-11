@@ -3,6 +3,6 @@
 
     tasks:
       - name: Launch Clients
-        shell: screen -dmS client python ~/game/game/client.py -s /dev/ttyACM0 && sleep 2
+        shell: screen -dmS client python ~/braidstag/arduino_milestag/game/client.py -s /dev/ttyACM0 && sleep 2
         environment:
           SERVER: 192.168.0.189

@@ -22,5 +22,5 @@
       - name: Get game software
         git:
           repo: 'https://github.com/braidstag/arduino-milestag.git'
-          dest: ~/arduino_milestag/
+          dest: ~/braidstag/arduino_milestag/
           version: 56c9ea2
