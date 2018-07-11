@@ -16,6 +16,7 @@
           - python-pyside.qtgui
           - python-pyside.qtxml
           - git
+          - screen
         become: true
 
       - name: Get game software
