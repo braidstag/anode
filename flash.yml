@@ -7,6 +7,10 @@
         update_cache: yes
         cache_valid_time: 3600
         become: true
+      - name: Verify AVRDUDE Configuration
+        template: src=templates/avrdude/avrdude_gpio.conf dest=/home/pi/braidstag/config/avrdude_gpio.conf
+      - name: Verify flashing script
+        template: src=templates/avrdude/flash.sh dest=/home/pi/braidstag/config/flash.sh
       - name: Flash
         shell: /home/pi/braidstag/config/flash.sh
         become: true
