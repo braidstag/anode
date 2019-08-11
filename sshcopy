@@ -1,4 +1,0 @@
-#!/bin/bash
-for ip in `cat ~/ansible-stuff/server_list`; do
-  ssh-copy-id -i ~/.ssh/id_rsa.pub pi@$ip
-done

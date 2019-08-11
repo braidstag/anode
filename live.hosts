@@ -11,9 +11,6 @@ gun6 staticip=192.168.0.236 btmac=XX:XX:XX:XX:XX:XX
 [gateways]
 meshcontrol staticip=192.168.0.230
 
-[ansible-controllers]
-
-
 [pi:children]
 guns
 gateways
