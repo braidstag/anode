@@ -3,9 +3,10 @@
 #needs instructions for configuring avrdude
     tasks:
       - name: Verify dependancies
-        apt: name=avrdude state=latest
-        update_cache: yes
-        cache_valid_time: 3600
+        apt: name={{item}} state=present
+        with_items:
+          - avrdude
+          - wiringpi
         become: true
       - name: Create target directory
         file: path=/home/pi/braidstag/config state=directory

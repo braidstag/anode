@@ -6,6 +6,7 @@
       private: no
 
   tasks:
-    - name: Ansible prompt example.
-      debug:
-        msg: "{{ Version }}"
+    - replace:
+        path: /boot/cmdline.txt
+        regexp: 'console=serial0,115200 '
+      become: true

@@ -5,9 +5,16 @@
   tasks:
 #  - name: Ensure screen is installed
 #    apt: name=screen state=installed
-
+  - name: Apt-update
+    apt:
+      update_cache: yes
+      cache_valid_time: 3600
+    become: true
   - name: Ensure batctl is installed
     apt: name=batctl state=present
+    become: true
+  - name: Check for Vim because Andy
+    apt: name=vim state=present
     become: true
 
   - name: DHCPCD files
@@ -60,9 +67,16 @@
   tasks:
 #  - name: Ensure screen is installed
 #    apt: name=screen state=present
-
+  - name: Apt-update
+    apt:
+      update_cache: yes
+      cache_valid_time: 3600
+    become: true
   - name: Ensure batctl is installed
     apt: name=batctl state=present
+    become: true
+  - name: Check for Vim because Andy
+    apt: name=vim state=present
     become: true
 
   - name: Set hostname to match inventory hostname in /hosts
@@ -89,7 +103,16 @@
     template: src=templates/network/bridgestatic2      dest=/home/pi/bridge  mode=+x
     notify: reboot sequence
     become: true
-
+  - name: Config file
+    template: src=templates/config.txt     dest=/boot/config.txt  mode=+x
+    notify: reboot sequence
+    become: true
+  - replace:
+      path: /boot/cmdline.txt
+      regexp: 'console=serial0,115200 '
+    become: true
+  - name: Create target directory
+    file: path=/home/pi/braidstag/ state=directory
 
   - name: Copy debug file from template
     template: src=templates/debug        dest=/home/pi/braidstag/debug

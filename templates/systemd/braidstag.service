@@ -1,0 +1,14 @@
+[Unit]
+Description=Braidstag Client
+After=network.target
+StartLimitIntervalSec=0
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=pi
+Environment=SERVER=192.168.0.130
+ExecStart=/usr/bin/python /home/pi/braidstag/arduino-milestag/game/client.py -s /dev/ttyS0
+
+[Install]
+WantedBy=multi-user.target
