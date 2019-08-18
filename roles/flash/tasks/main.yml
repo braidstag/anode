@@ -1,0 +1,31 @@
+#needs instructions for configuring avrdude
+- name: Verify dependancies
+  apt:
+    name: {{ item }}
+    state: latest
+  with_items:
+    - avrdude
+    - wiringpi
+  update_cache: yes
+  cache_valid_time: 3600
+  become: true
+
+- name: Create target directory
+  file:
+    path: /home/pi/braidstag/config
+    state: directory
+
+- name: Verify AVRDUDE Configuration
+  template:
+    src: templates/avrdude_gpio.conf
+    dest: /home/pi/braidstag/config/avrdude_gpio.conf
+
+- name: Verify flashing script
+  template:
+    src: templates/flash.sh
+    dest: /home/pi/braidstag/config/flash.sh
+    mode: "a=rwx"
+
+- name: Flash
+  shell: /home/pi/braidstag/config/flash.sh
+  become: true

@@ -1,0 +1,7 @@
+Hostname {{ inventory_hostname }}
+Ansible Host {{ ansible_host }}
+Using Static ips? {{ use_static_ips }}
+{% if use_static_ips %}
+  Static IP: {{ staticip }}
+  Ststic Gateway {{ staticgateway }}
+{% endif %}

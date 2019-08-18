@@ -1,0 +1,34 @@
+- name: Verify dependancies for game
+  apt:
+    name: "{{item}}"
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+
+  with_items:
+    - python
+    - python-serial
+    - python-pyside.qtgui
+    - python-pyside.qtxml
+    - git
+    - screen
+  become: true
+
+- name: Get game software
+  git:
+    repo: '{{ game_repo }}'
+    dest: ~/braidstag/arduino_milestag/
+    version: '{{ game_version }}'
+    force: yes
+
+- name: Verify/install systemd service
+  template:
+    src: templates/systemd/braidstag.service
+    dest: /lib/systemd/system/braidstag.service
+  become: true
+
+- name: Ensure systemd service is enabled
+  systemd:
+    name: braidstag
+    enabled: yes
+  become: true
