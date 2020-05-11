@@ -1,13 +1,12 @@
 #needs instructions for configuring avrdude
 - name: Verify dependancies
   apt:
-    name: {{ item }}
+    name:
+     - avrdude
+     - wiringpi
     state: latest
-  with_items:
-    - avrdude
-    - wiringpi
-  update_cache: yes
-  cache_valid_time: 3600
+    update_cache: yes
+    cache_valid_time: 3600
   become: true
 
 - name: Create target directory

@@ -5,7 +5,7 @@ gun3 staticip=192.168.0.233 btmac=XX:XX:XX:XX:XX:XX
 gun4 staticip=192.168.0.234 btmac=XX:XX:XX:XX:XX:XX
 gun5 staticip=192.168.0.235 btmac=XX:XX:XX:XX:XX:XX
 gun6 staticip=192.168.0.236 btmac=XX:XX:XX:XX:XX:XX
-#gun7 staticip=192.168.0.237 btmac=XX:XX:XX:XX:XX:XX
+gun7 staticip=192.168.0.237 btmac=XX:XX:XX:XX:XX:XX
 #gun8 staticip=192.168.0.238 btmac=XX:XX:XX:XX:XX:XX
 
 [gateways]
