@@ -1,4 +1,3 @@
-#needs instructions for configuring avrdude
 - name: Verify dependancies
   apt:
     name:
