@@ -1,0 +1,80 @@
+#- name: Ensure screen is installed
+#  apt: name=screen state=installed
+
+- name: Apt-update
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  become: true
+
+- name: Check for Vim because Andy
+  apt:
+    name: vim
+    state: present
+  become: true
+
+- name: Ensure sshd is enabled and running
+  service:
+    name: ssh
+    state: started
+    enabled: yes
+
+- name: Ensure batctl is installed
+  apt:
+    name: batctl
+    state: present
+  become: true
+
+- name: DHCPCD files
+  template:
+    src: templates/network/dhcpcd.conf
+    dest: /etc/dhcpcd.conf
+  notify: reboot sequence
+  become: true
+
+- name: Interfaces files
+  template:
+    src: templates/network/interfaces
+    dest: /etc/network/interfaces
+  notify: reboot sequence
+  become: true
+
+- name: WPA_Supplicant file
+  template:
+    src: templates/network/wpa_supplicant.conf
+    dest: /etc/wpa_supplicant/wpa_supplicant.conf
+  notify: reboot sequence
+  become: true
+
+- name: Bridge post_up script
+  template:
+    src: templates/network/bridge
+    dest: /home/pi/bridge
+    mode: +x
+  notify: reboot sequence
+  become: true
+
+- name: Copy debug file from template
+  template:
+    src: templates/debug
+    dest: /home/pi/debug
+  become: true
+
+- name: Config file
+  template:
+    src: templates/config.txt
+    dest: /boot/config.txt
+    mode: +x
+  notify: reboot sequence
+  become: true
+
+#TODO: only do this for guns
+- replace:
+    path: /boot/cmdline.txt
+    regexp: 'console=serial0,115200 '
+  become: true
+
+- name: Create target directory
+  file: 
+    path: /home/pi/braidstag/
+    state: directory

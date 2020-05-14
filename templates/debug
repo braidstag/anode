@@ -1,2 +1,0 @@
-Hostname {{ inventory_hostname }}
-Ansible Host {{ ansible_host }}

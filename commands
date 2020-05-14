@@ -8,3 +8,6 @@ arduino breadboard https://www.arduino.cc/en/Main/Standalone
 resistors https://www.digikey.co.uk/en/resources/conversion-calculators/conversion-calculator-resistor-color-code-4-band
 atmega circuit https://www.allaboutcircuits.com/uploads/articles/Arduino_schematic.png
 bluetooth guide https://www.sigmdel.ca/michel/ha/rpi/bluetooth_02_en.html#start
+
+sudo avrdude -p atmega328p -C /etc/avrdude_gpio.conf -c pi_1 -U lfuse:w:0xFF:m  <-- set atmega328p fuses to use 17mhz external oscillator
+Atmega328 fust bit guide https://www.allaboutcircuits.com/projects/atmega328p-fuse-bits-and-an-external-crystal-oscillator/

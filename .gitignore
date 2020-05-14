@@ -3,3 +3,7 @@ wpa_supplicant.conf
 *.retry
 *.ntmess
 server_list
+
+#vim
+*~
+*.swp
