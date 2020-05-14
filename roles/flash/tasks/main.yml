@@ -1,3 +1,13 @@
+- pause:
+    prompt: "Enter path if using your own firmware build. Leave blank to use whatever is onboard. -- You must run gamesetup role to revert firmware --"
+  register: pause_result
+  run_once: True	
+- name: Copy development hex file
+  copy:
+   src: "{{ pause_result.user_input }}"
+   dest: /home/pi/braidstag/arduino-milestag/hex/IRcomms.ino.with_bootloader.hex
+  when: pause_result.user_input|length
+
 - name: Verify dependancies
   apt:
     name:
