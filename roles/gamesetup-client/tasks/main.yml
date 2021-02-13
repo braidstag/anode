@@ -1,0 +1,22 @@
+- name: Verify dependencies for game client
+  apt:
+    name:
+     - python
+     - python-serial
+    state: latest
+    update_cache: yes
+    cache_valid_time: 3600
+  become: true
+
+- name: Verify/install systemd service
+  template:
+    src: templates/systemd/braidstag-client.service
+    dest: /lib/systemd/system/braidstag-client.service
+  become: true
+
+- name: Ensure systemd service is enabled
+  systemd:
+    name: braidstag-client
+    enabled: yes
+    state: started
+  become: true

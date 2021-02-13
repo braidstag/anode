@@ -19,11 +19,13 @@ gateways
 ansible_connection=ssh
 ansible_ssh_user=pi
 ansible_ssh_pass=raspberry
+external_router=192.168.0.252
+nameserver={{external_router}}
 
 [guns:vars]
 staticgateway=192.168.0.230
 ansible_host="{{ inventory_hostname }}.local"
 
 [gateways:vars]
-staticgateway=192.168.0.252
+staticgateway={{external_router}}
 ansible_host="{{ inventory_hostname }}.local"

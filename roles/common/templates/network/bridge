@@ -5,8 +5,8 @@ ip link set dev eth0 master mesh-bridge
 ip link set dev bat0 master mesh-bridge
 ip link set up dev mesh-bridge
 
-#if we have a static ip and are setup to use static allocation
 {% if use_static_ips %}
+#as we have a static ip, setup static allocation
 ip addr add {{ staticip }}/24 dev mesh-bridge
 route add default gw {{ staticgateway }}
 sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"

@@ -6,17 +6,5 @@
 - hosts: guns
   roles:
   - common
-  - gamesetup
-
-  tasks:
-
-  - name: Set hostname to match inventory hostname in /hosts
-    lineinfile:
-                  path: /etc/hosts
-                  regexp: '^127.0.1.1'
-                  line: '127.0.1.1  {{ inventory_hostname }}'
-    become: true
-    notify: reboot sequence
-
-#  - include: gamesetup.yml
-
+  - gamesetup-client
+  - flash

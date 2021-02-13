@@ -1,0 +1,19 @@
+- name: Verify dependencies for game
+  apt:
+    name:
+     - git
+    state: latest
+    update_cache: yes
+    cache_valid_time: 3600
+  become: true
+
+- name: Get game software
+  git:
+    repo: '{{ game_repo }}'
+    dest: ~/braidstag/arduino-milestag/
+    version: '{{ game_version }}'
+    force: yes
+    accept_hostkey: yes
+  notify: restart braidstag service
+
+
