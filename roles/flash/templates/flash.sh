@@ -2,6 +2,7 @@
 
 cd /home/pi/braidstag/arduino-milestag/IRcomms
 echo Compile
+make clean
 make
 
 echo raise gpio pin to hold power on
