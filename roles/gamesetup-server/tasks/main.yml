@@ -1,0 +1,32 @@
+- name: Verify dependencies for game server
+  apt:
+    name:
+     - python
+     - python-falcon
+     # admin webapp
+     - nodejs
+     - npm
+    state: latest
+    update_cache: yes
+    cache_valid_time: 3600
+  become: true
+
+- name: Build admin webapp
+  shell:
+    chdir: /home/pi/braidstag/arduino-milestag/admin-webapp
+    cmd: 'if [ $(find /home/pi/braidstag/arduino-milestag/admin-webapp -path ./build -prune -false -o -type f -printf "%T@ %p\n" | sort -n | tail -n 1 | cut -d"." -f1) -gt $(find /home/pi/braidstag/arduino-milestag/admin-webapp -path ./build -prune -false -o -type f -printf "%T@ %p\n" | sort -n | tail -n 1 | cut -d"." -f1) ]; then echo npm install && npm run build; else echo skipping webapp-admin build as no nothings changed; fi'
+  become: true
+  notify: restart braidstag service
+
+- name: Verify/install systemd service
+  template:
+    src: templates/systemd/braidstag-server.service
+    dest: /lib/systemd/system/braidstag-server.service
+  become: true
+
+- name: Ensure systemd service is enabled
+  systemd:
+    name: braidstag-server
+    enabled: yes
+    state: started
+  become: true

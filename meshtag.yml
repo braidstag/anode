@@ -1,10 +1,13 @@
 ---
-- hosts: gateways
+- hosts: pi
   roles:
   - common
 
-- hosts: guns
+- hosts: gameserver
   roles:
-  - common
+  - gamesetup-server
+
+- hosts: gun
+  roles:
   - gamesetup-client
   - flash

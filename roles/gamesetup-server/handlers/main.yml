@@ -1,0 +1,6 @@
+- name: restart braidstag service
+  systemd:
+    name: braidstag-server
+    state: restarted
+  become: true
+

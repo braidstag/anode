@@ -1,0 +1,14 @@
+[Unit]
+Description=Braidstag Server
+After=network.target
+StartLimitIntervalSec=0
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=pi
+Environment=SERVER={{ game_server_ip }}
+ExecStart=/usr/bin/python /home/pi/braidstag/arduino-milestag/game/server.py -H -a /home/pi/braidstag/arduino-milestag/admin-webapp/build
+
+[Install]
+WantedBy=multi-user.target

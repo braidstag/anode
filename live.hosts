@@ -1,4 +1,4 @@
-[guns]
+[gun]
 gun1 staticip=192.168.0.231 btmac=5A:5A:5A:A6:10:18
 gun2 staticip=192.168.0.232 btmac=5A:5A:5A:A8:8B:38
 gun3 staticip=192.168.0.233 btmac=XX:XX:XX:XX:XX:XX
@@ -8,12 +8,15 @@ gun6 staticip=192.168.0.236 btmac=XX:XX:XX:XX:XX:XX
 gun7 staticip=192.168.0.237 btmac=XX:XX:XX:XX:XX:XX
 #gun8 staticip=192.168.0.238 btmac=XX:XX:XX:XX:XX:XX
 
-[gateways]
+[gameserver]
 meshcontrol staticip=192.168.0.230
 
+[gateway:children]
+gameserver
+
 [pi:children]
-guns
-gateways
+gun
+gateway
 
 [pi:vars]
 ansible_connection=ssh
@@ -21,11 +24,12 @@ ansible_ssh_user=pi
 ansible_ssh_pass=raspberry
 external_router=192.168.0.252
 nameserver={{external_router}}
+game_server_ip=192.168.0.230
 
-[guns:vars]
+[gun:vars]
 staticgateway=192.168.0.230
 ansible_host="{{ inventory_hostname }}.local"
 
-[gateways:vars]
+[gateway:vars]
 staticgateway={{external_router}}
 ansible_host="{{ inventory_hostname }}.local"
